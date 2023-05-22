@@ -1,3 +1,5 @@
+import '../models/_models.dart';
+
 import 'services.sender.dart';
 
 class BudpayPlugin {
@@ -75,8 +77,71 @@ class BudpayPlugin {
   }
 
   // Checkout
+  Future<dynamic> checkOut({required CheckOut payloads}) async {
+    return await Sender(secret_key).checkOut(payloads: payloads);
+  }
 
-  Future<void> checkOut(Map<String, String>? payloads) async {
-    await Sender(secret_key).checkOut(payloads: payloads);
+  // Verify Transaction
+  Future<dynamic> verifyTransaction({required String reference}) async {
+    return await Sender(secret_key).verifyTransaction(reference: reference);
+  }
+
+  // Get all Transaction
+  Future<dynamic> getAllTransaction() async {
+    return await Sender(secret_key).getAllTransaction();
+  }
+
+  // Get single Transaction
+  Future<dynamic> getSingleTransaction({required String tnxID}) async {
+    return await Sender(secret_key).getSingleTransaction(tnxID: tnxID);
+  }
+
+  // Pay with bank transfer
+  Future<dynamic> payWithBankTransfer({required BankTransfer payloads}) async {
+    return await Sender(secret_key).payWithBankTransfer(payloads: payloads);
+  }
+
+  // Payment Features
+  // Request Payment
+  Future<dynamic> requestPayment({required RequestPayment payloads}) async {
+    return await Sender(secret_key).requestPayment(payloads: payloads);
+  }
+
+  // Create Payment Link
+  Future<dynamic> createPaymentLink(
+      {required CreatePaymentLink payloads}) async {
+    await Sender(secret_key).createPaymentLink(payloads: payloads);
+  }
+
+  // Create Customer
+  Future<dynamic> createCustomer({required Customer payloads}) async {
+    return await Sender(secret_key).createCustomer(payloads: payloads);
+  }
+
+  // Virtual Account
+  // Create Dedicated Virtual Account
+  Future<dynamic> createVirtualAccount({required Customer payloads}) async {
+    return await Sender(secret_key).createVirtualAccount(payloads: payloads);
+  }
+
+  // Get Virtual Account
+  Future<dynamic> getVirtualAccounts() async {
+    return await Sender(secret_key).getVirtualAccounts();
+  }
+
+  // Refunds
+  // Create refund
+  Future<dynamic> createRefund({required Refund payloads}) async {
+    return await Sender(secret_key).createRefund(payloads: payloads);
+  }
+
+  // Get refunds
+  Future<dynamic> getRefunds() async {
+    return await Sender(secret_key).getRefunds();
+  }
+
+  // Get refund
+  Future<dynamic> getRefund({required String reference}) async {
+    return await Sender(secret_key).getRefund(reference: reference);
   }
 }
