@@ -6,10 +6,12 @@ class Fetcher {
   static Future<void> fetch({
     required Method method,
     required String path,
+    bool? v2,
     Map<String, String>? headers,
     Map<String, String>? payloads,
   }) async {
-    var url = Uri.parse('${Constants.BASE_URL}$path');
+    var url = Uri.parse(
+        '${v2 != null && v2 == true ? Constants.BASE_URL_S2S : Constants.BASE_URL}$path');
     try {
       print("###Request stated: Requesting.........................");
       var response;

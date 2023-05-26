@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Budpay Flutter',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _verifyTransaction() {
     // verifyTransaction : check if a transaction is successful or failed.
     budPay
-        .verifyTransaction(reference: "BUD_pay2023")
+        .verifyTransaction(reference: ":reference")
         .then((response) => print(response))
         .catchError((err) => print(err));
   }
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _getSingleTransaction() {
     // get single Transaction.
-    budPay.getSingleTransaction(tnxID: "").then((response) => print(response));
+    budPay.getSingleTransaction(tnxID: "4").then((response) => print(response));
   }
 
   void _payWithBankTransfer() {
@@ -78,13 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
     budPay
         .payWithBankTransfer(
           payloads: BankTransfer(
-            email: "customer@gmail.com",
+            email: "test@test.com",
             fullName: "white coode",
-            currency: "currency", // currency code e.g [NGN, GHS, USD]
-            amount: "",
+            currency: "NGN", // currency code e.g [NGN, GHS, USD]
+            amount: "100",
+            reference: "1234567898765434567",
           ),
         )
-        .then((response) => print(response));
+        .then((response) => print(response)); // TODO Work
   }
 
   void _requestPayment() {
@@ -123,13 +124,13 @@ class _MyHomePageState extends State<MyHomePage> {
     budPay
         .createCustomer(
           payloads: Customer(
-            email: "", // customer email
-            firstName: "", // customer firstName
-            lastName: "", // customer lastName
-            phoneNumber: "", // customer phoneNumber
+            email: "zero@budpay.com", // customer email
+            firstName: "Zero", // customer firstName
+            lastName: "sum", // customer lastName
+            phoneNumber: "+2348123456789", // customer phoneNumber
           ),
         )
-        .then((response) => print(response));
+        .then((response) => print(response)); // TODO worked
   }
 
   void _createVirtualAccount() {
@@ -137,13 +138,33 @@ class _MyHomePageState extends State<MyHomePage> {
     budPay
         .createVirtualAccount(
           payloads: Customer(
-            customer: "", // customer code
+            customer: "CUS_3hqlcizuoffygev", // customer code
             email: "", // customer email [OPTIONAL]
             firstName: "", // customer firstName [OPTIONAL]
             lastName: "", // customer lastName [OPTIONAL]
             phoneNumber: "", // customer phoneNumber [OPTIONAL]
           ),
         )
+        .then((response) => print(response)); // TODO Worked
+  }
+
+  void _getVirtualAccount() {
+    budPay.getVirtualAccounts().then((response) => print(response));
+  }
+
+  void _createRefund() {
+    budPay
+        .createRefund(payloads: Refund(reference: "BUD_4503320239329292929"))
+        .then((response) => print(response)); // TODO worked
+  }
+
+  void _getRefunds() {
+    budPay.getRefunds().then((response) => print(response));
+  }
+
+  void _getRefund() {
+    budPay
+        .getRefund(reference: "RF_shpfemttkvpvcoc")
         .then((response) => print(response));
   }
 
@@ -156,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _createPaymentLink,
+        onPressed: _getRefund,
         tooltip: 'test',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

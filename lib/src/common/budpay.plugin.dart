@@ -60,10 +60,10 @@ class BudpayPlugin {
       throw Exception(
           "flutter_budpay not initialized, required your secret-key and public-key.");
     }
-    if (_public_key.length < 30 || !_public_key.contains('-')) {
+    if (_public_key.length < 30 || !_public_key.contains('_')) {
       throw Exception("flutter_budpay public key is too short and Invalid.");
     }
-    if (_secret_Key.length < 40 || !_secret_Key.startsWith('test_')) {
+    if (_secret_Key.length < 40 || !_secret_Key.startsWith('sk_')) {
       throw Exception("flutter_budpay secret key is too short and Invalid.");
     }
   }
@@ -78,70 +78,146 @@ class BudpayPlugin {
 
   // Checkout
   Future<dynamic> checkOut({required CheckOut payloads}) async {
+    _performance();
     return await Sender(secret_key).checkOut(payloads: payloads);
   }
 
   // Verify Transaction
   Future<dynamic> verifyTransaction({required String reference}) async {
+    _performance();
     return await Sender(secret_key).verifyTransaction(reference: reference);
   }
 
   // Get all Transaction
   Future<dynamic> getAllTransaction() async {
+    _performance();
     return await Sender(secret_key).getAllTransaction();
   }
 
   // Get single Transaction
   Future<dynamic> getSingleTransaction({required String tnxID}) async {
+    _performance();
     return await Sender(secret_key).getSingleTransaction(tnxID: tnxID);
   }
 
   // Pay with bank transfer
   Future<dynamic> payWithBankTransfer({required BankTransfer payloads}) async {
+    _performance();
     return await Sender(secret_key).payWithBankTransfer(payloads: payloads);
   }
 
   // Payment Features
   // Request Payment
   Future<dynamic> requestPayment({required RequestPayment payloads}) async {
+    _performance();
     return await Sender(secret_key).requestPayment(payloads: payloads);
   }
 
   // Create Payment Link
   Future<dynamic> createPaymentLink(
       {required CreatePaymentLink payloads}) async {
-    await Sender(secret_key).createPaymentLink(payloads: payloads);
+    _performance();
+    return await Sender(secret_key).createPaymentLink(payloads: payloads);
   }
 
   // Create Customer
   Future<dynamic> createCustomer({required Customer payloads}) async {
+    _performance();
     return await Sender(secret_key).createCustomer(payloads: payloads);
   }
 
   // Virtual Account
   // Create Dedicated Virtual Account
   Future<dynamic> createVirtualAccount({required Customer payloads}) async {
+    _performance();
     return await Sender(secret_key).createVirtualAccount(payloads: payloads);
   }
 
   // Get Virtual Account
   Future<dynamic> getVirtualAccounts() async {
+    _performance();
     return await Sender(secret_key).getVirtualAccounts();
   }
 
   // Refunds
   // Create refund
   Future<dynamic> createRefund({required Refund payloads}) async {
+    _performance();
     return await Sender(secret_key).createRefund(payloads: payloads);
   }
 
   // Get refunds
   Future<dynamic> getRefunds() async {
+    _performance();
     return await Sender(secret_key).getRefunds();
   }
 
   // Get refund
   Future<dynamic> getRefund({required String reference}) async {
+    _performance();
     return await Sender(secret_key).getRefund(reference: reference);
+  }
+
+  // Payout
+  // Bank list
+  Future<dynamic> bankList() async {
+    _performance();
+    return await Sender(secret_key).bankList();
+  }
+
+  // Bank List [get all bank list for a country with currency specified]
+  Future<dynamic> bankListWithSpecificCurrency(
+      {required String currency}) async {
+    _performance();
+    return await Sender(secret_key)
+        .bankListWithSpecificCurrency(currency: currency);
+  }
+
+  // Account Name Validation
+  Future<dynamic> accountNameValidation({required Account payloads}) async {
+    _performance();
+    return await Sender(secret_key).accountNameValidation(payloads: payloads);
+  }
+
+  // Single Payout
+  Future<dynamic> singlePayout({required SingleTransfer payloads}) async {
+    _performance();
+    return await Sender(secret_key).singlePayout(payloads: payloads);
+  }
+
+  // Bulk Payout
+  Future<dynamic> bulkPayout({required BulkTransfer payloads}) async {
+    _performance();
+    return await Sender(secret_key).bulkPayout(payloads: payloads);
+  }
+
+  // Verify Payout
+  Future<dynamic> verifyPayout({required String reference}) async {
+    _performance();
+    return await Sender(secret_key).verifyPayout(reference: reference);
+  }
+
+  // List Payout or Transfer
+  Future<dynamic> getListAllPayout({required String reference}) async {
+    _performance();
+    return await Sender(secret_key).getListAllPayout(reference: reference);
+  }
+
+  // Payout Fee
+  Future<dynamic> payoutFee() async {
+    _performance();
+    return await Sender(secret_key).payoutFee();
+  }
+
+  // Wallet Balance
+  Future<dynamic> walletBalance({required String currency}) async {
+    _performance();
+    return await Sender(secret_key).walletBalance(currency: currency);
+  }
+
+  // Wallet Transactions
+  Future<dynamic> walletTransaction({required String currency}) async {
+    _performance();
+    return await Sender(secret_key).walletTransaction(currency: currency);
   }
 }

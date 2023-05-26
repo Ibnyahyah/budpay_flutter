@@ -88,6 +88,7 @@ class AcceptPayment {
       var response = await Fetcher.fetch(
         method: Method.post,
         path: '/banktransfer/initialize',
+        v2: true,
         headers: headers,
         payloads: {
           "amount": payloads.amount,
