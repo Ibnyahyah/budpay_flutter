@@ -11,8 +11,8 @@ class Sender {
   Future<void> checkOut({required CheckOut payloads}) async {
     return await AcceptPayment.checkOut(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       payloads: payloads,
     );
@@ -22,8 +22,8 @@ class Sender {
   Future<void> verifyTransaction({required String reference}) async {
     return await AcceptPayment.verifyTransaction(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       reference: reference,
     );
@@ -33,8 +33,8 @@ class Sender {
   Future<void> getAllTransaction() async {
     return await AcceptPayment.getTransactions(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
     );
   }
@@ -43,8 +43,8 @@ class Sender {
   Future<void> getSingleTransaction({required String tnxID}) async {
     return await AcceptPayment.getSingleTransaction(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       tnxID: tnxID,
     );
@@ -54,8 +54,8 @@ class Sender {
   Future<void> payWithBankTransfer({required BankTransfer payloads}) async {
     return await AcceptPayment.payWithBankTransfer(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       payloads: payloads,
     );
@@ -66,8 +66,8 @@ class Sender {
   Future<void> requestPayment({required RequestPayment payloads}) async {
     return await PaymentFeatures.requestPayment(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       payloads: payloads,
     );
@@ -77,8 +77,8 @@ class Sender {
   Future<void> createPaymentLink({required CreatePaymentLink payloads}) async {
     return await PaymentFeatures.createPaymentLink(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       payloads: payloads,
     );
@@ -88,8 +88,8 @@ class Sender {
   Future<void> createCustomer({required Customer payloads}) async {
     return await PaymentFeatures.createCustomer(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       payloads: payloads,
     );
@@ -100,8 +100,8 @@ class Sender {
   Future<void> createVirtualAccount({required Customer payloads}) async {
     return await PaymentFeatures.createVirtualAccount(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       payloads: payloads,
     );
@@ -111,8 +111,8 @@ class Sender {
   Future<void> getVirtualAccounts() async {
     return await PaymentFeatures.getVirtualAccounts(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
     );
   }
@@ -122,8 +122,8 @@ class Sender {
   Future<void> createRefund({required Refund payloads}) async {
     return await PaymentFeatures.createRefund(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       payloads: payloads,
     );
@@ -133,8 +133,8 @@ class Sender {
   Future<void> getRefunds() async {
     return await PaymentFeatures.getRefunds(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
     );
   }
@@ -143,8 +143,8 @@ class Sender {
   Future<void> getRefund({required String reference}) async {
     return await PaymentFeatures.getRefund(
       headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $secretKay",
+        "content-type": "application/json",
+        "authorization": "Bearer $secretKay",
       },
       reference: reference,
     );

@@ -39,7 +39,7 @@ class PaymentFeatures {
     try {
       var response = await Fetcher.fetch(
         method: Method.post,
-        path: '/request_payment',
+        path: '/create_payment_link',
         headers: headers,
         payloads: {
           "redirect": payloads.redirectURL,

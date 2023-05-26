@@ -14,15 +14,15 @@ class AcceptPayment {
         path: '/transaction/initialize',
         headers: headers,
         payloads: {
-          "first_name": payloads.firstName,
-          "last_name": payloads.lastName,
           "email": payloads.email,
           "currency": payloads.currency,
           "reference": payloads.reference,
+          "amount": payloads.amount,
         },
       );
       return response;
     } catch (e) {
+      print(e);
       throw Exception(e);
     }
   }

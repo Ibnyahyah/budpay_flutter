@@ -3,9 +3,9 @@ import 'package:flutter_budpay/flutter_budpay.dart';
 
 void main() async {
   await BudpayPlugin.initialize(
-    publicKey: "PUBLIC_KEY",
-    secretKey: "SECRET_KEY",
-  ).then(() {
+    publicKey: "pk_test_jv8yueg1ycwkowviqw91swbewglvziwde9idpd",
+    secretKey: "sk_test_3xd7ybrhumna6sn9kumn3eqljal6lghshb3uiu9",
+  ).then((_) {
     runApp(const MyApp());
   });
 }
@@ -40,16 +40,16 @@ class _MyHomePageState extends State<MyHomePage> {
   final budPay = BudpayPlugin();
 
   void _checkOut() {
+    print("Clicked");
     // checkout payment with card
     budPay
         .checkOut(
           payloads: CheckOut(
             email: "customer@gmail.com", // user email
-            firstName: "firstName", // user first name
-            lastName: "lastName", // user last name
-            currency: "currency", // currency code e.g [NGN, GHS, USD]
-            reference: "", // reference code []
-            amount: "amount", // amount
+            currency: "NGN", // currency code e.g [NGN, GHS, USD]
+            reference: "", // reference code [OPTIONAL]
+            callBackURL: "", // reference code [OPTIONAL]
+            amount: "20000", // amount
           ),
         )
         .then((response) => print(response));
@@ -59,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // verifyTransaction : check if a transaction is successful or failed.
     budPay
         .verifyTransaction(reference: "BUD_pay2023")
-        .then((response) => print(response));
+        .then((response) => print(response))
+        .catchError((err) => print(err));
   }
 
   void _getAllTransaction() {
@@ -91,10 +92,12 @@ class _MyHomePageState extends State<MyHomePage> {
     budPay
         .requestPayment(
           payloads: RequestPayment(
-            description: "", // description for the bank transfer
-            recipient: "",
-            currency: "currency", // currency code e.g [NGN, GHS, USD]
-            amount: "",
+            description:
+                "testing payment request", // description for the bank transfer
+            recipient:
+                "toluxsys@yahoo.ca,07036218209,sam@bud.africa,08161112404",
+            currency: "NGN", // currency code e.g [NGN, GHS, USD]
+            amount: "200",
           ),
         )
         .then((response) => print(response));
@@ -105,11 +108,11 @@ class _MyHomePageState extends State<MyHomePage> {
     budPay
         .createPaymentLink(
           payloads: CreatePaymentLink(
-            description: "", // description for the payment
-            name: "", // Customer's fullname name
-            redirectURL: "", // 	redirect url
-            currency: "currency", // currency code e.g [NGN, GHS, USD]
-            amount: "",
+            description: "description", // description for the payment
+            name: "NAme", // Customer's fullname name
+            redirectURL: "your_redirect_link", // 	redirect url
+            currency: "NGN", // currency code e.g [NGN, GHS, USD]
+            amount: "2500",
           ),
         )
         .then((response) => print(response));
@@ -153,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(),
       floatingActionButton: FloatingActionButton(
-        onPressed: _checkOut,
+        onPressed: _createPaymentLink,
         tooltip: 'test',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

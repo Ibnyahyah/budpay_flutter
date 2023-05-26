@@ -11,22 +11,24 @@ class Fetcher {
   }) async {
     var url = Uri.parse('${Constants.BASE_URL}$path');
     try {
-      dynamic request = await http.get(url);
-      switch (method) {
-        case Method.get:
-          request = await http.get(url);
-          break;
-        case Method.post:
-          request = await http.post(
-            url,
-            headers: headers,
-            body: json.encode(payloads),
-          );
-          break;
+      print("###Request stated: Requesting.........................");
+      var response;
+      if (method == Method.get) {
+        response = await http.get(url);
+        print({method == Method.get, response.body, payloads, url, headers});
+      } else if (method == Method.post) {
+        response = await http.post(
+          url,
+          headers: headers,
+          body: json.encode(payloads),
+        );
+        print({method == Method.get, response.body, payloads, url, headers});
+      } else {
+        throw Exception("Unknown Method! supported [get and post]");
       }
-      var response = request;
       return json.decode(response.body);
     } catch (e) {
+      print({e});
       throw Exception(e);
     }
   }
