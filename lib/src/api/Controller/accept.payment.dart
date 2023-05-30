@@ -1,5 +1,4 @@
-import 'package:flutter_budpay/src/models/_models.dart';
-
+import '/src/models/_models.dart';
 import '../_api.dart';
 
 class AcceptPayment {
@@ -22,7 +21,6 @@ class AcceptPayment {
       );
       return response;
     } catch (e) {
-      print(e);
       throw Exception(e);
     }
   }

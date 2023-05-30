@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 import '../_api.dart';
-import 'package:flutter_budpay/src/models/_models.dart';
+import '/src/models/_models.dart';
 
 class PayoutFeatures {
   // Payout
@@ -90,7 +88,7 @@ class PayoutFeatures {
   // Bulk Payout
   static Future<void> bulkPayout({
     required Map<String, String>? headers,
-    required Map<String, String> payloads,
+    required Map<String, dynamic> payloads,
   }) async {
     try {
       var response = await Fetcher.fetch(
@@ -113,7 +111,7 @@ class PayoutFeatures {
     try {
       var response = await Fetcher.fetch(
         method: Method.get,
-        path: '/payout/$reference',
+        path: '/payout/:$reference',
         headers: headers,
       );
       return response;
@@ -125,13 +123,11 @@ class PayoutFeatures {
   // List Payout or Transfer
   static Future<void> getListAllPayout({
     required Map<String, String>? headers,
-    String? reference,
   }) async {
     try {
       var response = await Fetcher.fetch(
         method: Method.get,
-        path:
-            reference != null ? '/list_transfer/$reference' : '/list_transfers',
+        path: '/list_transfers',
         headers: headers,
       );
       return response;

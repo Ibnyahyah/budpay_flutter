@@ -1,5 +1,5 @@
 import '../_api.dart';
-import 'package:flutter_budpay/src/models/_models.dart';
+import '/src/models/_models.dart';
 
 class BillsFeatures {
   // Bills
@@ -27,7 +27,7 @@ class BillsFeatures {
     try {
       var response = await Fetcher.fetch(
         method: Method.post,
-        path: '/bank_transfer',
+        path: '/airtime/topup',
         headers: headers,
         payloads: {
           "amount": payloads.amount,
@@ -117,8 +117,10 @@ class BillsFeatures {
   }
 
   // Get Tv Packages
-  static Future<void> getTvPackages(
-      {required Map<String, String>? headers, required String provider}) async {
+  static Future<void> getTvPackages({
+    required Map<String, String>? headers,
+    required String provider,
+  }) async {
     try {
       var response = await Fetcher.fetch(
         method: Method.get,
@@ -205,6 +207,7 @@ class BillsFeatures {
           payloads: {
             "provider": payloads.provider,
             "number": payloads.number,
+            "type": payloads.type,
           });
       return response;
     } catch (e) {
@@ -220,7 +223,7 @@ class BillsFeatures {
     try {
       var response = await Fetcher.fetch(
           method: Method.post,
-          path: '/electricity/validate',
+          path: '/electricity/recharge',
           headers: headers,
           payloads: {
             "provider": payloads.provider,

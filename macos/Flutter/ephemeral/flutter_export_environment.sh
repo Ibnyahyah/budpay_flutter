@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=C:\Users\User\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\User\Documents\Workspace\labs\flutter\flutter_budpay"
+export "FLUTTER_APPLICATION_PATH=C:\Users\User\Documents\Workspace\labs\flutter\budpay_flutter"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=0.0.1"

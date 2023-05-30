@@ -1,8 +1,6 @@
 // To parse this JSON data, do
 //
 //     final bulkTransfer = bulkTransferFromJson(jsonString);
-
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 BulkTransfer bulkTransferFromJson(String str) =>

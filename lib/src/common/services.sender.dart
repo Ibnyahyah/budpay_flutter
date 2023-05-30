@@ -2,9 +2,10 @@ import '../api/Controller/_controller.dart';
 import '../models/_models.dart';
 
 class Sender {
-  Sender(this.secretKEY);
+  Sender(this.secretKEY, this.signatureKEY);
 
   final String secretKEY;
+  final String signatureKEY;
 
   // Accept Payment
   // Payment checkout with card
@@ -189,6 +190,7 @@ class Sender {
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer $secretKEY",
+        "Encryption": signatureKEY,
       },
       payloads: payloads,
     );
@@ -200,8 +202,9 @@ class Sender {
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer $secretKEY",
+        "Encryption": signatureKEY,
       },
-      payloads: payloads.toJson() as Map<String, String>,
+      payloads: payloads.toJson(),
     );
   }
 
@@ -217,13 +220,12 @@ class Sender {
   }
 
   // List Payout or Transfer
-  Future<void> getListAllPayout({required String reference}) async {
+  Future<void> getListAllPayout() async {
     return await PayoutFeatures.getListAllPayout(
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer $secretKEY",
       },
-      reference: reference,
     );
   }
 
@@ -256,6 +258,169 @@ class Sender {
         "Authorization": "Bearer $secretKEY",
       },
       currency: currency,
+    );
+  }
+
+  // Bills
+  // Airtime Providers
+  Future<void> airtimeProviders() async {
+    return await BillsFeatures.airtimeProviders(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+    );
+  }
+
+  // Airtime Top up
+  Future<void> airtimeTopUp({required Airtime payload}) async {
+    return await BillsFeatures.airtimeTopUp(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+        "Encryption": signatureKEY,
+      },
+      payloads: payload,
+    );
+  }
+
+  // Internet Providers
+  // Internet
+  Future<void> getInternetProviders() async {
+    return await BillsFeatures.getInternetProviders(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+    );
+  }
+
+  // Internet Data Plans
+  Future<void> getAllInternetDataPlans({required String provider}) async {
+    return await BillsFeatures.getAllInternetDataPlans(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+      provider: provider,
+    );
+  }
+
+  // Top up Internet Data
+  Future<void> internetTopUp({required Internet payloads}) async {
+    return await BillsFeatures.internetTopUp(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+      payloads: payloads,
+    );
+  }
+
+  // Tv Subscription
+  // tv
+  Future<void> getTvs() async {
+    return await BillsFeatures.getTvs(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+    );
+  }
+
+  // Get Tv Packages
+  Future<void> getTvPackages({required String provider}) async {
+    return await BillsFeatures.getTvPackages(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+      provider: provider,
+    );
+  }
+
+  // Tv Validate
+  Future<void> tvValidate({required TvProvider payloads}) async {
+    return await BillsFeatures.tvValidate(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+      payloads: payloads,
+    );
+  }
+
+  // Pay Tv
+  Future<void> payTv({required TvProvider payloads}) async {
+    return await BillsFeatures.payTv(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+      payloads: payloads,
+    );
+  }
+
+  // Electricity
+  // Get Electricity
+  Future<void> getElectricity() async {
+    return await BillsFeatures.getElectricity(
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+    );
+  }
+
+  // Validate Electricity
+  Future<void> validateElectricity({
+    required ElectricityProvider payloads,
+  }) async {
+    return await BillsFeatures.validateElectricity(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+      payloads: payloads,
+    );
+  }
+
+  // Electricity Recharge
+  Future<void> electricityRecharge({
+    required ElectricityProvider payloads,
+  }) async {
+    return await BillsFeatures.electricityRecharge(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+        "Encryption": signatureKEY,
+      },
+      payloads: payloads,
+    );
+  }
+
+  // IdentityVerification
+  // Verify Account Number
+  Future<void> verifyAccountNumber({required Account payloads}) async {
+    return await IdentityVerification.verifyAccountNumber(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+      payloads: payloads,
+    );
+  }
+
+  // Verify BVN Number
+  Future<void> verifyBVN({
+    required BVN payloads,
+  }) async {
+    return await IdentityVerification.verifyBVN(
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer $secretKEY",
+      },
+      payloads: payloads,
     );
   }
 }

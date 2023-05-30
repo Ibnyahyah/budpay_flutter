@@ -1,5 +1,5 @@
 import '../_api.dart';
-import 'package:flutter_budpay/src/models/_models.dart';
+import '/src/models/_models.dart';
 
 class IdentityVerification {
   // Verify Account Number
@@ -31,7 +31,7 @@ class IdentityVerification {
     try {
       var response = await Fetcher.fetch(
         method: Method.post,
-        path: '/bank_transfer',
+        path: '/bvn/verify',
         headers: headers,
         payloads: {
           "bvn": payloads.bvnNumber,
@@ -40,7 +40,7 @@ class IdentityVerification {
           "middle_name": payloads.middleName,
           "last_name": payloads.lastName,
           "phone_number": payloads.phoneNumber,
-          "dob": payloads.DOB,
+          "dob": payloads.dob,
           "gender": payloads.gender,
           "reference": payloads.reference,
         },

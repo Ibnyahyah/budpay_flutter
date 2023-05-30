@@ -5,7 +5,7 @@ class BVN {
   final String lastName;
   final String middleName;
   final String phoneNumber;
-  final String DOB;
+  final String dob;
   final String gender;
   final String reference;
 
@@ -16,7 +16,7 @@ class BVN {
     this.lastName = "",
     this.middleName = "",
     this.phoneNumber = "",
-    this.DOB = "",
+    this.dob = "",
     this.gender = "",
     this.reference = "",
   }) : super();

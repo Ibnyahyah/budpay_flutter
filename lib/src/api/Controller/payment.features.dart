@@ -1,4 +1,4 @@
-import 'package:flutter_budpay/src/models/_models.dart';
+import '/src/models/_models.dart';
 
 import '../_api.dart';
 
