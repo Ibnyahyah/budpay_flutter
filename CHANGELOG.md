@@ -1,3 +1,4 @@
-## 0.0.1
+## BudPay Flutter version 0.0.3
 
-* TODO: Describe initial release.
+* Releasing version 0.0.3
+    - Fixed bug in get requests

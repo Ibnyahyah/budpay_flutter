@@ -86,10 +86,11 @@ class BudpayPlugin {
     }
   }
 
-  // Checkout
-  Future<dynamic> checkOut({required CheckOut payloads}) async {
+  // standardCheckout
+  Future<dynamic> standardCheckout({required CheckOut payloads}) async {
     _performance();
-    return await Sender(secret_key, signatureKEY).checkOut(payloads: payloads);
+    return await Sender(secret_key, signatureKEY)
+        .standardCheckout(payloads: payloads);
   }
 
   // Verify Transaction

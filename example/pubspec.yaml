@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   budpay_flutter:
     path: ../
+  webview_flutter: ^4.2.1
+  logger: ^1.3.0
 
 dev_dependencies:
   flutter_test:

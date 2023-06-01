@@ -8,9 +8,9 @@ class Sender {
   final String signatureKEY;
 
   // Accept Payment
-  // Payment checkout with card
-  Future<void> checkOut({required CheckOut payloads}) async {
-    return await AcceptPayment.checkOut(
+  // Payment standardCheckout with card
+  Future<void> standardCheckout({required CheckOut payloads}) async {
+    return await AcceptPayment.standardCheckout(
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer $secretKEY",
@@ -312,6 +312,7 @@ class Sender {
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer $secretKEY",
+        "Encryption": signatureKEY,
       },
       payloads: payloads,
     );
@@ -356,6 +357,7 @@ class Sender {
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer $secretKEY",
+        "Encryption": signatureKEY,
       },
       payloads: payloads,
     );

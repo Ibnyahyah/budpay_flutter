@@ -15,7 +15,10 @@ class Fetcher {
     try {
       http.Response response;
       if (method == Method.get) {
-        response = await http.get(url);
+        response = await http.get(
+          url,
+          headers: headers,
+        );
       } else if (method == Method.post) {
         response = await http.post(
           url,

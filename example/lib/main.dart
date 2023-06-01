@@ -1,5 +1,6 @@
+import 'package:budpay_flutter/budpay_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_budpay/budpay_flutter.dart';
+import '_screens.dart';
 
 void main() async {
   await BudpayPlugin.initialize(
@@ -19,11 +20,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Budpay Flutter',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Budpay Flutter'),
+      home: HomeScreen(),
     );
   }
 }
@@ -43,19 +45,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // creating reference variable: [OPTIONAL]
   String reference = DateTime.now().millisecondsSinceEpoch.toString();
-  void _checkOut() {
-    // checkout payment with card
+  void _standardCheckout() {
+    // standardCheckout payment with card
     budPay
-        .checkOut(
+        .standardCheckout(
           payloads: CheckOut(
             email: "customer@gmail.com", // user email
             currency: "NGN", // currency code e.g [NGN, GHS, USD]
             reference: reference, // reference code [OPTIONAL]
-            callBackURL: "", // reference code [OPTIONAL]
+            callBackURL: "", // reference code [OPTIONAL]`
             amount: "20000", // amount
           ),
         )
-        .then((response) => print(response)); // TODO worked
+        .then((response) => print(response));
   }
 
   void _verifyTransaction() {
@@ -119,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
             amount: "2500",
           ),
         )
-        .then((response) => print(response)); // TODO worked
+        .then((response) => print(response));
   }
 
   void _createCustomer() {
@@ -133,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
             phoneNumber: "+2348123456789", // customer phoneNumber
           ),
         )
-        .then((response) => print(response)); // TODO worked
+        .then((response) => print(response));
   }
 
   void _createVirtualAccount() {
@@ -158,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _createRefund() {
     budPay
         .createRefund(payloads: Refund(reference: "BUD_4503320239329292929"))
-        .then((response) => print(response)); // TODO worked
+        .then((response) => print(response));
   }
 
   void _getRefunds() {
@@ -346,7 +348,7 @@ class _MyHomePageState extends State<MyHomePage> {
             type: "prepaid",
           ),
         )
-        .then((response) => print(response)); // TODO worked
+        .then((response) => print(response));
   }
 
   void _electricityRecharge() {
@@ -368,7 +370,7 @@ class _MyHomePageState extends State<MyHomePage> {
         .verifyAccountNumber(
           payloads: Account(bankCode: "000013", accountNumber: "0050883605"),
         )
-        .then((response) => print(response)); // TODO worked
+        .then((response) => print(response));
   }
 
   void _verifyBVN() {
@@ -385,7 +387,7 @@ class _MyHomePageState extends State<MyHomePage> {
             reference: "20220540300003938",
           ),
         )
-        .then((response) => print(response)); // TODO worked
+        .then((response) => print(response));
   }
 
   @override

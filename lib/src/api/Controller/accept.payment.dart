@@ -2,8 +2,8 @@ import '/src/models/_models.dart';
 import '../_api.dart';
 
 class AcceptPayment {
-  // CheckOut : payment check out with card
-  static Future<void> checkOut({
+  // standardCheckout : payment check out with card
+  static Future<void> standardCheckout({
     required Map<String, String>? headers,
     required CheckOut payloads,
   }) async {
