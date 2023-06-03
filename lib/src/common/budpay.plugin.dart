@@ -1,3 +1,6 @@
+import 'package:budpay_flutter/budpay_flutter.dart';
+import 'package:flutter/material.dart';
+
 import '../models/_models.dart';
 
 import 'services.sender.dart';
@@ -87,10 +90,23 @@ class BudpayPlugin {
   }
 
   // standardCheckout
-  Future<dynamic> standardCheckout({required CheckOut payloads}) async {
+  Future<dynamic> standardCheckout(
+      {required CheckOut payloads, required BuildContext context}) async {
     _performance();
-    return await Sender(secret_key, signatureKEY)
-        .standardCheckout(payloads: payloads);
+    try {
+      var response = await Sender(secret_key, signatureKEY)
+          .standardCheckout(payloads: payloads);
+      if (response['status'] == true) {
+        // ignore: use_build_context_synchronously
+        CheckoutModal(
+                context: context,
+                authorizationUrl: response["data"]["authorization_url"])
+            .pay();
+      }
+      return response;
+    } catch (err) {
+      throw Exception("Unknown error: $err");
+    }
   }
 
   // Verify Transaction

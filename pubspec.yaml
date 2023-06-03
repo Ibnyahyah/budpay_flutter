@@ -1,6 +1,6 @@
 name: budpay_flutter
-description: Flutter budpay can be used to payment integration, bills payments, fast and automated transfers, and lot more. You can also generate virtual banks accounts, send money to your friends and families via bank transfer. It's also include a standardCheckout payment system.
-version: 0.0.3
+description: A Flutter plugin for make paymen, integrating payment ways for end users, airtime purchasing and lots more.
+version: 0.0.4
 homepage: https://github.com/Ibnyahyah/budpay_flutter
 
 environment:
@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.6
+  webview_flutter: ^3.0.0
 
 dev_dependencies:
   flutter_test:

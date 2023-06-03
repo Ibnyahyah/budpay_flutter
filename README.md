@@ -37,16 +37,18 @@ String reference = DateTime.now().millisecondsSinceEpoch.toString();
 void _standardCheckout() {
 // standardCheckout payment with card
 budPay
-    .standardCheckout(
-        payloads: CheckOut(
-        email: "customer@gmail.com", // user email
-        currency: "NGN", // currency code e.g [NGN, GHS, USD]
-        reference: reference, // reference code [OPTIONAL]
-        callBackURL: "", // reference code [OPTIONAL]
-        amount: "20000", // amount
-        ),
-    )
-    .then((response) => print(response)); // TODO worked
+      .standardCheckout(
+    payloads: CheckOut(
+      email: _emailController.text, // user email
+      currency: _currencyController.text
+          .toUpperCase(), // currency code e.g [NGN, GHS, USD]
+      reference: reference, // reference code [OPTIONAL]
+      callBackURL: _callbackURLController.text, // reference code [OPTIONAL]
+      amount: _amountController.text, // amount
+    ),
+    context: context, // required BuildContext to show popup
+  )
+  .then((response) => print(response)); // TODO worked
 }
 ```
 Others functions for accept payment includes

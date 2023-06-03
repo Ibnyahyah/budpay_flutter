@@ -9,7 +9,7 @@ class Sender {
 
   // Accept Payment
   // Payment standardCheckout with card
-  Future<void> standardCheckout({required CheckOut payloads}) async {
+  Future<dynamic> standardCheckout({required CheckOut payloads}) async {
     return await AcceptPayment.standardCheckout(
       headers: {
         "Content-type": "application/json",

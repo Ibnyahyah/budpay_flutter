@@ -1,6 +1,5 @@
 import 'package:budpay_flutter/budpay_flutter.dart';
 import 'package:flutter/material.dart';
-import '_screens.dart';
 
 void main() async {
   await BudpayPlugin.initialize(
@@ -15,7 +14,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: MyHomePage(title: "Budpay_flutter example"),
     );
   }
 }
@@ -56,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
             callBackURL: "", // reference code [OPTIONAL]`
             amount: "20000", // amount
           ),
+          context: context, // required BuildContext to show popup
         )
         .then((response) => print(response));
   }
